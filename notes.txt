@@ -5,3 +5,6 @@ brew services stop redis  --> stop redis server
 
 redis-cli  --> redis cli terminal 
 KEYS * --> get all keys in redis
+
+//Swagger Ui url
+http://localhost:8080/swagger-ui/
