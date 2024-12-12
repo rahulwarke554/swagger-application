@@ -1,0 +1,7 @@
+redis-server  --> test redis connection
+brew services start redis -->start redis server on mac
+brew services info redis --> check redis info
+brew services stop redis  --> stop redis server
+
+redis-cli  --> redis cli terminal 
+KEYS * --> get all keys in redis
