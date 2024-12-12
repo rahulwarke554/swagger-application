@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.swagger.entity.Users;
 import com.swagger.service.UsersService;
 
@@ -33,6 +34,14 @@ public class UserController {
 		List<Users> getUserResponse = usersService.GetAllUsersFromRedis();
 		
 		return getUserResponse;
+	}
+	
+	@PostMapping("/getUserById")
+	public ResponseEntity<String> GetUserById(@RequestBody String userId) throws JsonProcessingException {
+		
+		String response = usersService.GetuserById(userId);
+		
+		return ResponseEntity.ok(response);
 	}
 
 }

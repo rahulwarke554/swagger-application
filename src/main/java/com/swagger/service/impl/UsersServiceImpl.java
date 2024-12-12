@@ -3,6 +3,7 @@ package com.swagger.service.impl;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -106,6 +107,22 @@ public class UsersServiceImpl implements UsersService {
 		}
 		
 		return user;
+	}
+
+	@Override
+	public String GetuserById(String userId) throws JsonProcessingException {
+		
+		String getUserFromRedis = (String) redisTemplate.opsForValue().get("ADD_USER_KEY");
+		
+		List<Users> Users = buildUsers(getUserFromRedis);
+		
+		JSONObject userIdObj = new JSONObject(userId);
+		
+		List<Users> foundedUser = Users.stream()
+				.filter(u->u.getUserId() == userIdObj.getLong("userId"))
+				.collect(Collectors.toList());
+		
+		return foundedUser.toString();
 	}
 
 }
